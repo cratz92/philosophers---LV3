@@ -12,27 +12,25 @@
 
 #include "philosophers.h"
 
-/*
-** More opti than usleep function.
-*/
-void better_sleep(long d)
+void	ft_usleep(long d)
 {
-	struct timeval tmp;
-	struct timeval start;
+	struct timeval	tmp;
+	struct timeval	start;
 
 	gettimeofday(&start, NULL);
 	while (1)
 	{
 		usleep(50);
 		gettimeofday(&tmp, NULL);
-		if ((((long)(tmp.tv_sec - start.tv_sec)) * 1000000 + ((long)(tmp.tv_usec - start.tv_usec))) >= d)
-			return;
+		if ((((long)(tmp.tv_sec - start.tv_sec)) * 1000000
+			+ ((long)(tmp.tv_usec - start.tv_usec))) >= d)
+			return ;
 	}
 }
 
-int lennb_for_str(unsigned int nb)
+int	ft_number_len(unsigned int nb)
 {
-	int len;
+	int	len;
 
 	len = 1;
 	while (nb > 9)
@@ -43,9 +41,9 @@ int lennb_for_str(unsigned int nb)
 	return (len);
 }
 
-int lennb(unsigned int nb)
+int	ft_get_number_base(unsigned int nb)
 {
-	int len;
+	int	len;
 
 	len = 1;
 	while (nb > 9)
@@ -56,21 +54,21 @@ int lennb(unsigned int nb)
 	return (len);
 }
 
-void ft_putnbr_buffer(int n, char *str)
+void	ft_putnbr_buffer(int n, char *str)
 {
-	unsigned int temp;
-	unsigned int len;
-	char carac;
+	unsigned int	temp;
+	unsigned int	len;
+	char			minus;
 
-	carac = '-';
+	minus = '-';
 	temp = n;
 	if (n < 0)
 	{
-		*str = carac;
+		*str = minus;
 		str++;
 		temp = -n;
 	}
-	len = lennb(temp);
+	len = ft_get_number_base(temp);
 	while (len >= 10)
 	{
 		*str = temp / len + 48;

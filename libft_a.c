@@ -12,22 +12,16 @@
 
 #include "philosophers.h"
 
-/*
-** Writes string *s on a specific fd.
-*/
-void ft_putstr_fd(char *s, int fd)
+void	ft_putstr_fd(char *s, int fd)
 {
 	if (!s)
-		return;
+		return ;
 	write(fd, s, ft_strlen(s));
 }
 
-/*
-** Returns the len of string *s.
-*/
-size_t ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (s[i])
@@ -35,22 +29,19 @@ size_t ft_strlen(const char *s)
 	return (i);
 }
 
-/*
-** Transforms string *str into an int. Returns 0 is *str is not a number.
-*/
-long ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
-	long nb;
-	long signe;
-	long i;
+	long	nb;
+	long	sign;
+	long	i;
 
 	nb = 0;
-	signe = 1;
+	sign = 1;
 	i = 0;
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;
 	if (str[i] == '-')
-		signe *= -1;
+		sign *= -1;
 	if (str[i] == '-' || str[i] == '+')
 		i++;
 	while (str[i] >= '0' && str[i] <= '9')
@@ -58,13 +49,13 @@ long ft_atoi(const char *str)
 		nb = nb * 10 + (str[i] - '0');
 		i++;
 	}
-	return ((long)(nb * signe));
+	return ((long)(nb * sign));
 }
 
-size_t ft_strlcpy(char *dst, const char *src, size_t dstsize)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	size_t i;
-	size_t len;
+	size_t	i;
+	size_t	len;
 
 	i = 0;
 	len = 0;

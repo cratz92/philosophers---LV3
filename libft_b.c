@@ -12,23 +12,16 @@
 
 #include "philosophers.h"
 
-/*
-** Returns 1 if c is a digit, 0 otherwise.
-*/
-int ft_isdigit(int c)
+int	ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
 		return (1);
 	return (0);
 }
 
-/*
-** Return SUCCESS if the string is only made of digits, otherwise returns
-** FAILURE.
-*/
-int ft_strisdigit(char *str)
+int	ft_isnumber(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -37,4 +30,32 @@ int ft_strisdigit(char *str)
 			return (FAILURE);
 	}
 	return (SUCCESS);
+}
+
+long	actual_time(void)
+{
+	struct timeval	tmp_time;
+	long			ms;
+
+	gettimeofday(&tmp_time, NULL);
+	ms = tmp_time.tv_sec * 1000;
+	ms += tmp_time.tv_usec / 1000;
+	return (ms);
+}
+
+int	ft_compare_nbr(long a, long b)
+{
+	if (a > b)
+		return (1);
+	else if (a == b)
+		return (2);
+	else
+		return (0);
+}
+
+int	ft_ternary(int condition, int true_value, int false_value)
+{
+	if (condition)
+		return (true_value);
+	return (false_value);
 }

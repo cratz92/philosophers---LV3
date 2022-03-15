@@ -12,13 +12,13 @@
 
 #include "philosophers.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_philo *ph;
-	t_data ph_die;
-	int number_ph_done;
-	pthread_mutex_t *mutex;
-	t_args pa;
+	t_philo			*ph;
+	t_data			ph_die;
+	int				number_ph_done;
+	pthread_mutex_t	*mutex;
+	t_args			pa;
 
 	if (check_arguments(argc, argv))
 		return (FAILURE);
@@ -26,14 +26,16 @@ int main(int argc, char **argv)
 	ph_die.data = 0;
 	number_ph_done = 0;
 	init_t_args(&pa, argc, argv);
-	if (pa.number_of_ph < 2)
-		return (error_msg("Not enough philosphers, must be at least 2\n"));
-	if (!(mutex = create_forks(pa.number_of_ph))) //creates x mutexs for x philosophers
+	if (pa.number_of_ph < 1)
+		return (error_msg("Not enough philosphers, must be at least 1\n"));
+	mutex = create_forks(pa.number_of_ph);
+	if (!(mutex))
 		return (error_msg("Malloc failed\n"));
-	if (!(ph = create_t_philo_array(mutex, &number_ph_done, &ph_die, &pa)))
+	ph = create_t_philo_array(mutex, &number_ph_done, &ph_die, &pa);
+	if (!(ph))
 		return (error_msg("Malloc failed\n"));
 	launch_threads(ph);
-	join_all_threads(ph); //waiting all threads
+	join_all_threads(ph);
 	clean_exit(ph);
 	return (0);
 }
