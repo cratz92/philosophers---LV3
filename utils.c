@@ -6,7 +6,7 @@
 /*   By: cbrito-l <cbrito-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 11:28:20 by cbrito-l          #+#    #+#             */
-/*   Updated: 2022/03/15 23:46:44 by cbrito-l         ###   ########.fr       */
+/*   Updated: 2022/03/16 00:08:35 by cbrito-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,8 @@ int	check_arguments(int argc, char **argv)
 		return (error_msg("Wrong arguments\n"));
 	i = 1;
 	while (i < argc)
-		if (ft_isnumber(argv[i++])
-			&& (ft_compare_nbr(ft_atoi(argv[i]), 0) == 1))
-			return (error_msg("Only positive numbers accepted\n"));
+		if (ft_isnumber(argv[i++]))
+			return (error_msg("Only numbers (>= 0) are accepted\n"));
 	if (ft_atoi(argv[1]) > 200 || ft_strlen(argv[1]) > 3)
 		return (error_msg("Max number of philosophers : 200\n"));
 	i = 2;
